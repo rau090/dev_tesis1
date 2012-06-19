@@ -1,0 +1,63 @@
+﻿@model wepp_app_v0.Models.PersonalInterno
+@{
+    ViewBag.Title = "Nuevo Recurso";
+}
+<h2>@ViewBag.Title</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>PersonalInterno</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ApellidoPaterno)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ApellidoPaterno)
+            @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ApellidoMaterno)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ApellidoMaterno)
+            @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rol)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Rol, new[] {
+                new SelectListItem() {Text = "Lider de Proyecto", Value = "LP"},
+                new SelectListItem() {Text = "Ing. de Soluciones", Value = "IDS"}
+                })
+            @Html.ValidationMessageFor(model => model.Rol)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EstadoPersonal)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.EstadoPersonal, new[] {
+                new SelectListItem {Text="Activo",Value="Activo"},
+                new SelectListItem {Text="Inactivo",Value="Inactivo"},
+                })
+            @Html.ValidationMessageFor(model => model.EstadoPersonal)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,7 @@
+D:\website\wep_app_test\wepp_app_v0\wepp_app_v0\bin\wepp_app_v0.dll
+D:\website\wep_app_test\wepp_app_v0\wepp_app_v0\bin\wepp_app_v0.pdb
+D:\website\wep_app_test\wepp_app_v0\wepp_app_v0\bin\EntityFramework.dll
+D:\website\wep_app_test\wepp_app_v0\wepp_app_v0\bin\EntityFramework.xml
+D:\website\wep_app_test\wepp_app_v0\wepp_app_v0\obj\Release\ResolveAssemblyReference.cache
+D:\website\wep_app_test\wepp_app_v0\wepp_app_v0\obj\Release\wepp_app_v0.dll
+D:\website\wep_app_test\wepp_app_v0\wepp_app_v0\obj\Release\wepp_app_v0.pdb

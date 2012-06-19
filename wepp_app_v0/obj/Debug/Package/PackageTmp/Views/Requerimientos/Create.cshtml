@@ -1,0 +1,99 @@
+﻿@model wepp_app_v0.Models.Requerimiento
+
+@{
+    ViewBag.Title = "Nuevo Requerimiento";
+}
+
+<h2>ViewBag.Title</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Requerimiento</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumReq,"Num. Requerimiento")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumReq)
+            @Html.ValidationMessageFor(model => model.NumReq)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AnhoPriorizacion,"Año Priorizacion")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AnhoPriorizacion)
+            @Html.ValidationMessageFor(model => model.AnhoPriorizacion)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PeriodoPriorizacion,"Periodo Priorizacion")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PeriodoPriorizacion)
+            @Html.ValidationMessageFor(model => model.PeriodoPriorizacion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Estado,"Estado")
+        </div>
+        <div class="editor-field">
+           @Html.DropDownListFor(model => model.Estado, new[] {
+                new SelectListItem() {Text = "Programado", Value = "P"},
+                new SelectListItem() {Text = "Registrado", Value = "R"}
+                })
+            @Html.ValidationMessageFor(model => model.Estado)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Prioridad,"Prioridad")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Prioridad)
+            @Html.ValidationMessageFor(model => model.Prioridad)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FechaPriorizacion,"Fecha Priorizacion")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FechaPriorizacion)
+            @Html.ValidationMessageFor(model => model.FechaPriorizacion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LiderUsuario,"Lider Usuario")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LiderUsuario)
+            @Html.ValidationMessageFor(model => model.LiderUsuario)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NivelComplejidad,"Complejidad")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NivelComplejidad)
+            @Html.ValidationMessageFor(model => model.NivelComplejidad)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UnidadNegocio,"Unidad del Negocio")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UnidadNegocio)
+            @Html.ValidationMessageFor(model => model.UnidadNegocio)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
