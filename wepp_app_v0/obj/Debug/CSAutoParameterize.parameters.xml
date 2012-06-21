@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="EFDbContext-Web.config Connection String" description="EFDbContext Connection String used in web.config by the application to access the database." defaultvalue="Data Source=ciwar.com;Initial Catalog=ciwarprod;Persist Security Info=True;User ID=prodadmin;Password=quecuas090" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="D:\\website\\wep_app_test\\wepp_app_v0\\wepp_app_v0\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='EFDbContext']/@connectionString" />
-  </parameter>
-</parameters>

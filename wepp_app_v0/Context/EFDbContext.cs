@@ -14,6 +14,9 @@ namespace wepp_app_v0.Context
         public DbSet<Requerimiento> Requerimientos { get; set; }
         public DbSet<PersonalInterno> PersonalesInternos { get; set; }
         public DbSet<Cotizacion> Cotizaciones { get; set; }
+        public DbSet<Cronograma> Cronogramas { get; set; }
+        public DbSet<Actividad> Actividades { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
@@ -65,7 +68,7 @@ namespace wepp_app_v0.Context
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Actividad>()
-                .HasRequired(p => p.personalInterno)
+                .HasOptional(p => p.personalInterno)
                 .WithMany(l => l.Actividades)
                 .HasForeignKey(p => p.IdPersonalInterno)
                 .WillCascadeOnDelete(false);
@@ -76,6 +79,6 @@ namespace wepp_app_v0.Context
 
         }
 
-        public DbSet<Cronograma> Cronogramas { get; set; }
+        
     }
 }

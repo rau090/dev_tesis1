@@ -14,7 +14,7 @@ namespace wepp_app_v0.Models
         public int IdCronograma { get; set; }
         public virtual Cronograma cronograma { get; set; }
 
-        public int IdPersonalInterno { get; set; }
+        public Nullable<int> IdPersonalInterno { get; set; }
         public virtual PersonalInterno personalInterno { get; set; }
 
         public int OrdenActividad { get; set; }

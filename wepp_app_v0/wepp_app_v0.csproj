@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Context\EFDbContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActividadesController.cs" />
     <Compile Include="Controllers\CotizacionesController.cs" />
     <Compile Include="Controllers\CronogramasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -77,6 +78,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Actividad.cs" />
+    <Compile Include="Models\AsignacionRecursos.cs" />
     <Compile Include="Models\Cotizacion.cs" />
     <Compile Include="Models\Cronograma.cs" />
     <Compile Include="Models\PersonalInterno.cs" />
@@ -219,6 +221,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Cronogramas\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Actividades\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Actividades\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Actividades\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Actividades\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Actividades\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Prueba.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
