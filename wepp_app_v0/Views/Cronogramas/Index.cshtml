@@ -1,0 +1,63 @@
+﻿@model IEnumerable<wepp_app_v0.Models.Cronograma>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            requerimiento
+        </th>
+        <th>
+            FechaFin
+        </th>
+        <th>
+            FechaInicio
+        </th>
+        <th>
+            NumControlCambio
+        </th>
+        <th>
+            Version
+        </th>
+        <th>
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.requerimiento.LiderUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaFin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumControlCambio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Version)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdCronograma }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdCronograma }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdCronograma })
+        </td>
+    </tr>
+}
+
+</table>

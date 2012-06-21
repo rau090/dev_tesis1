@@ -43,12 +43,39 @@ namespace wepp_app_v0.Context
             modelBuilder.Entity<Cotizacion>().ToTable("Cotizacion");
             modelBuilder.Entity<Cotizacion>()
                 .HasRequired(p => p.requerimiento)
-                .WithMany(l => l.cotizaciones)
+                .WithMany(l => l.Cotizaciones)
                 .HasForeignKey(p => p.IdRequerimiento)
                 .WillCascadeOnDelete(false);
+
+            //Tabla Cronograma
+            modelBuilder.Entity<Cronograma>().ToTable("Cronograma");
+            modelBuilder.Entity<Cronograma>()
+                .HasRequired(p => p.requerimiento)
+                .WithMany(l => l.Cronogramas)
+                .HasForeignKey(p => p.IdRequerimiento)
+                .WillCascadeOnDelete(false);
+
+            //Tabla Actividad
+            modelBuilder.Entity<Actividad>().ToTable("Actividad");
+
+            modelBuilder.Entity<Actividad>()
+                .HasRequired(p => p.cronograma)
+                .WithMany(l => l.Actividades)
+                .HasForeignKey(p => p.IdCronograma)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Actividad>()
+                .HasRequired(p => p.personalInterno)
+                .WithMany(l => l.Actividades)
+                .HasForeignKey(p => p.IdPersonalInterno)
+                .WillCascadeOnDelete(false);
+
+
 
             
 
         }
+
+        public DbSet<Cronograma> Cronogramas { get; set; }
     }
 }

@@ -1,0 +1,45 @@
+﻿@model wepp_app_v0.Models.Cronograma
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Cronograma</legend>
+
+    <div class="display-label">requerimiento</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.requerimiento.NumReq)
+    </div>
+
+    <div class="display-label">FechaFin</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaFin)
+    </div>
+
+    <div class="display-label">FechaInicio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaInicio)
+    </div>
+
+    <div class="display-label">NumControlCambio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumControlCambio)
+    </div>
+
+    <div class="display-label">Version</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Version)
+    </div>
+
+    <div class="display-label">Estado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Estado)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.IdCronograma }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

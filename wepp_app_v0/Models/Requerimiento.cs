@@ -27,7 +27,8 @@ namespace wepp_app_v0.Models
         public string Estado { get; set; }
         public int Prioridad { get; set; }
 
-        public virtual List<Cotizacion> cotizaciones { get; set; }
+        public virtual List<Cotizacion> Cotizaciones { get; set; }
+        public virtual List<Cronograma> Cronogramas { get; set; }
         
         
       
