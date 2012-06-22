@@ -19,7 +19,8 @@ namespace wepp_app_v0.Controllers
 
         public ViewResult Index()
         {
-            return View();
+            var requerimientos = db.Requerimientos.Include(r => r.Cotizaciones).Where(r => r.Estado == "Registrado").OrderBy(r => r.Prioridad);
+            return View(requerimientos.ToList());
         }
 
 

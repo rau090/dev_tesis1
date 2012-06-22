@@ -11,16 +11,16 @@
 {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>asignacionrecursos</legend>
+        <legend>Datos de Asignación de Recursos</legend>
         <div class="editor-label">
-            @Html.LabelFor(model => model.FechaPlanificacion)
+            @Html.LabelFor(model => model.FechaPlanificacion,"Fecha de Inicio")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.FechaPlanificacion)
             @Html.ValidationMessageFor(model => model.FechaPlanificacion)
         </div>
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Iniciar" />
         </p>
     </fieldset>
 }
