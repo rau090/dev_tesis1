@@ -68,6 +68,7 @@
     <Compile Include="Context\EFDbContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadesController.cs" />
+    <Compile Include="Controllers\AsignacionRecursosController.cs" />
     <Compile Include="Controllers\CotizacionesController.cs" />
     <Compile Include="Controllers\CronogramasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -239,6 +240,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Prueba.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AsignacionRecursos\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AsignacionRecursos\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
