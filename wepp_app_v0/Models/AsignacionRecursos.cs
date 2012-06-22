@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
+using System.Data;
 using System.Web;
 using wepp_app_v0.Context;
 
@@ -8,9 +10,9 @@ namespace wepp_app_v0.Models
 {
     public class AsignacionRecursos
     {
-        public static PersonalInterno mejorIdS()
+        public static PersonalInterno mejorIdS(EFDbContext bd)
         {
-            EFDbContext bd = new EFDbContext();
+
             List<PersonalInterno> IdSs = bd.PersonalesInternos.Include(p => p.Actividades).Where(p => p.Rol == "IDS").ToList();
             // ***********************************************************************************
             // Pruebo buscar IDS LIBRE
@@ -22,6 +24,7 @@ namespace wepp_app_v0.Models
             {
                 if (r.Actividades.Count() == 0)
                 {
+                    //Console.WriteLine("ids - libre " + r.IdPersonalInterno);
                     IdSLibres.Add(r);
                 }
             }
@@ -30,6 +33,10 @@ namespace wepp_app_v0.Models
             {
                 //Se encontró el mejor IdS
                 //Console.WriteLine("ids Libre " + IdSLibres[0].Nombre);
+                //IdS = IdSLibres[0];
+                //IdS.Actividades = IdSLibres[0].Actividades;
+                //Console.WriteLine("ids Selecto libre " + IdSLibres[0].IdPersonalInterno);
+                //Console.WriteLine("ids Selecto libre " + IdSLibres[0].IdPersonalInterno);
                 return IdSLibres[0];
             }
 
@@ -46,19 +53,24 @@ namespace wepp_app_v0.Models
             IdSs.Sort(delegate(PersonalInterno ids1, PersonalInterno ids2) { return DateTime.Compare(ids1.Actividades[0].FechaFin, ids2.Actividades[0].FechaFin); });
 
             //Console.WriteLine("ids Selecto " + IdSs[0].IdPersonalInterno);
-            //Se encontró LP
+
+
+            //IdS = IdSs[0];
+            //IdS.Actividades = IdSs[0].Actividades;
+            //Console.WriteLine("ids Selecto " + IdSs[0].Nombre + " " + IdSs[0].Actividades[0].FechaFin);
+            //Console.WriteLine("ids Selecto " + IdS.Nombre + " " + IdS.Actividades[0].FechaFin);
             return IdSs[0];
 
         }
 
-        public static PersonalInterno mejorLP()
+        public static PersonalInterno mejorLP(EFDbContext bd)
         {
-            EFDbContext bd = new EFDbContext();
             List<PersonalInterno> LPs = bd.PersonalesInternos.Include(p => p.Actividades).Where(p => p.Rol == "LP").ToList();
 
             // Pruebo buscar LP LIBRE
 
             //Genero lista de LP LIBREs
+
 
             List<PersonalInterno> LPLibres = new List<PersonalInterno>();
 
@@ -73,7 +85,8 @@ namespace wepp_app_v0.Models
             if (LPLibres.Count() > 0)
             {
                 //Se encontró el mejor LP
-                Console.WriteLine("lp Libre " + LPLibres[0].Nombre);
+                //Console.WriteLine("lp Libre " + LPLibres[0].Nombre);
+
                 return LPLibres[0];
             }
 
@@ -92,6 +105,7 @@ namespace wepp_app_v0.Models
 
             //Console.WriteLine("ids Selecto " + IdSs[0].IdPersonalInterno);
             //Se encontró LP
+
             return LPs[0];
 
         }
