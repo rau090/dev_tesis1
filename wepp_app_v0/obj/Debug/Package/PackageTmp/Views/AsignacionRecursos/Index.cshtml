@@ -1,0 +1,66 @@
+﻿@model IEnumerable<wepp_app_v0.Models.Requerimiento>
+@{
+    ViewBag.Title = "Requerimientos por programar";
+}
+
+<h2>@ViewBag.Title</h2>
+@Html.ActionLink("Asignar Recursos","Create")
+<table>
+    <tr>
+        <th>
+            NumReq
+        </th>
+        <th>
+            Prioridad
+        </th>
+        <th>
+            Año Priorizacion
+        </th>
+        <th>
+            Periodo Priorizacion
+        </th>
+        <th>
+            Fecha Priorizacion
+        </th>
+        <th>
+            Lider Usuario
+        </th>
+        <th>
+            Nivel Complejidad
+        </th>
+        <th>
+            Unidad Negocio
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumReq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prioridad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnhoPriorizacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PeriodoPriorizacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPriorizacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LiderUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NivelComplejidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnidadNegocio)
+        </td>
+    </tr>
+}
+
+</table>

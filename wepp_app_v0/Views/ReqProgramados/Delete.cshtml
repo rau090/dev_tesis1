@@ -1,0 +1,83 @@
+﻿@model wepp_app_v0.Models.Requerimiento
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Requerimiento</legend>
+
+    <div class="display-label">NumReq</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumReq)
+    </div>
+
+    <div class="display-label">IdHojaPriorizacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdHojaPriorizacion)
+    </div>
+
+    <div class="display-label">IdResultadoAsignacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdResultadoAsignacion)
+    </div>
+
+    <div class="display-label">LiderProyecto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LiderProyecto.ApellidoMaterno)
+    </div>
+
+    <div class="display-label">IdS</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdS.ApellidoMaterno)
+    </div>
+
+    <div class="display-label">AnhoPriorizacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AnhoPriorizacion)
+    </div>
+
+    <div class="display-label">PeriodoPriorizacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PeriodoPriorizacion)
+    </div>
+
+    <div class="display-label">FechaPriorizacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaPriorizacion)
+    </div>
+
+    <div class="display-label">LiderUsuario</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LiderUsuario)
+    </div>
+
+    <div class="display-label">NivelComplejidad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NivelComplejidad)
+    </div>
+
+    <div class="display-label">UnidadNegocio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UnidadNegocio)
+    </div>
+
+    <div class="display-label">Estado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Estado)
+    </div>
+
+    <div class="display-label">Prioridad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Prioridad)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

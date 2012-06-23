@@ -19,7 +19,7 @@ namespace wepp_app_v0.Controllers
 
         public ViewResult Index()
         {
-            var requerimientos = db.Requerimientos.Include(r => r.Cotizaciones).Where(r => r.Estado == "Registrado").OrderBy(r => r.Prioridad);
+            var requerimientos = db.Requerimientos.Include(r => r.Cotizaciones).Where(r => r.Estado == "Registrado" && r.Cotizaciones.Count>0).OrderBy(r => r.Prioridad);
             return View(requerimientos.ToList());
         }
 
@@ -43,8 +43,10 @@ namespace wepp_app_v0.Controllers
             if (ModelState.IsValid)
             {
                 asignacionrecursos.Planificacion(asignacionrecursos.FechaPlanificacion, db);
-   
-                return RedirectToAction("Index");
+                if (asignacionrecursos.Resultado == 1)
+                {
+                    return RedirectToAction("Index");
+                } 
             }
 
             return View(asignacionrecursos);

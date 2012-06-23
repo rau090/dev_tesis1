@@ -20,6 +20,7 @@ namespace wepp_app_v0.Models
         public virtual PersonalInterno IdS { get; set; }
         public int AnhoPriorizacion { get; set; }
         public int PeriodoPriorizacion { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTime FechaPriorizacion { get; set; }
         public string LiderUsuario { get; set; }
         public string NivelComplejidad { get; set; }

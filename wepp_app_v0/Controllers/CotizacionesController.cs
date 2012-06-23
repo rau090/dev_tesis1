@@ -37,7 +37,7 @@ namespace wepp_app_v0.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.IdRequerimiento = new SelectList(db.Requerimientos, "IdRequerimiento", "NumReq");
+            ViewBag.IdRequerimiento = new SelectList(db.Requerimientos.Where(r=>r.Estado=="Registrado"), "IdRequerimiento", "NumReq");
             return View();
         } 
 

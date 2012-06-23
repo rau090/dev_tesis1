@@ -13,8 +13,9 @@ namespace wepp_app_v0.Models
 
         public virtual Requerimiento requerimiento { get; set; }
         public int IdRequerimiento { get; set; }
-
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTime FechaFin { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTime FechaInicio { get; set; }
         public int NumControlCambio { get; set; }
         public int Version { get; set; }

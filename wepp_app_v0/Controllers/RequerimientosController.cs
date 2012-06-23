@@ -19,7 +19,7 @@ namespace wepp_app_v0.Controllers
 
         public ViewResult Index()
         {
-            var requerimientos = db.Requerimientos.Include(r => r.LiderProyecto).Include(r => r.IdS);
+            var requerimientos = db.Requerimientos.Include(r => r.LiderProyecto).Include(r => r.IdS).Where(r=>r.Estado=="Registrado");
             return View(requerimientos.ToList());
         }
 
@@ -50,6 +50,7 @@ namespace wepp_app_v0.Controllers
         {
             if (ModelState.IsValid)
             {
+                requerimiento.Estado = "Registrado";
                 db.Requerimientos.Add(requerimiento);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
@@ -66,8 +67,8 @@ namespace wepp_app_v0.Controllers
         public ActionResult Edit(int id)
         {
             Requerimiento requerimiento = db.Requerimientos.Find(id);
-            ViewBag.IdLiderProyecto = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdLiderProyecto);
-            ViewBag.IdIdS = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdIdS);
+            ViewBag.IdLiderProyecto = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoPaterno", requerimiento.IdLiderProyecto);
+            ViewBag.IdIdS = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoPaterno", requerimiento.IdIdS);
             return View(requerimiento);
         }
 
@@ -83,8 +84,8 @@ namespace wepp_app_v0.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdLiderProyecto = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdLiderProyecto);
-            ViewBag.IdIdS = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdIdS);
+            ViewBag.IdLiderProyecto = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoPaterno", requerimiento.IdLiderProyecto);
+            ViewBag.IdIdS = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoPaterno", requerimiento.IdIdS);
             return View(requerimiento);
         }
 

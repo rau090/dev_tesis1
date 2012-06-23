@@ -1,0 +1,127 @@
+﻿@model wepp_app_v0.Models.Requerimiento
+@{
+    ViewBag.Title = "Num. Requerimiento "+Model.NumReq;
+}
+<h2>@ViewBag.Title</h2>
+<fieldset>
+    <legend>Requerimiento</legend>
+    <div class="display-label">
+        Num. Requerimiento</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumReq)
+    </div>
+    <div class="display-label">
+        Lider de Proyecto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LiderProyecto.ApellidoPaterno) - @Html.DisplayFor(model => model.LiderProyecto.Nombre)
+    </div>
+    <div class="display-label">
+        Ing. de Soluciones</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdS.ApellidoPaterno) - @Html.DisplayFor(model => model.IdS.Nombre)
+    </div>
+    <div class="display-label">
+        Año Priorizacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AnhoPriorizacion)
+    </div>
+    <div class="display-label">
+        Periodo Priorizacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AnhoPriorizacion)
+    </div>
+    <div class="display-label">
+        Estado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Estado)
+    </div>
+    <div class="display-label">
+        Prioridad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Prioridad)
+    </div>
+    <div class="display-label">
+        Fecha Priorizacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaPriorizacion)
+    </div>
+    <div class="display-label">
+        Lider Usuario</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LiderUsuario)
+    </div>
+    <div class="display-label">
+        Nivel Complejidad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NivelComplejidad)
+    </div>
+    <div class="display-label">
+        Unidad Negocio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UnidadNegocio)
+    </div>
+</fieldset>
+<fieldset>
+    <legend>Detalle Actividades</legend>
+    <table>
+        <tr>
+            <th>
+                cronograma
+            </th>
+            <th>
+                personalInterno
+            </th>
+            <th>
+                OrdenActividad
+            </th>
+            <th>
+                TipoActividad
+            </th>
+            <th>
+                FechaInicio
+            </th>
+            <th>
+                FechaFin
+            </th>
+            <th>
+                Avance
+            </th>
+            <th>
+                Asignacion
+            </th>
+        </tr>
+        @foreach (var item in Model.Cronogramas[0].Actividades)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCronograma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.personalInterno.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrdenActividad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoActividad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Avance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Asignacion)
+                </td>
+            </tr>
+        }
+    </table>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRequerimiento }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

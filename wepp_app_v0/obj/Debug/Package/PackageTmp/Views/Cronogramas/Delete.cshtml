@@ -1,0 +1,48 @@
+﻿@model wepp_app_v0.Models.Cronograma
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Cronograma</legend>
+
+    <div class="display-label">requerimiento</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.requerimiento.LiderUsuario)
+    </div>
+
+    <div class="display-label">FechaFin</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaFin)
+    </div>
+
+    <div class="display-label">FechaInicio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaInicio)
+    </div>
+
+    <div class="display-label">NumControlCambio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumControlCambio)
+    </div>
+
+    <div class="display-label">Version</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Version)
+    </div>
+
+    <div class="display-label">Estado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Estado)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

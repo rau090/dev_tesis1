@@ -35,7 +35,21 @@ namespace wepp_app_v0.Models
 
                     PersonalInterno ids = MejorIdS(db);
                     PersonalInterno lp = MejorLP(db);
-                    PlanificarRequerimiento(db, ids, lp, r, planificacion);
+                    
+                    if ((ids==null) || (lp==null)) 
+                    {
+                        this.Resultado = 0;
+                    }
+
+                    if (r.Cotizaciones.Count > 0)
+                    {
+                        PlanificarRequerimiento(db, ids, lp, r, planificacion);
+                    }
+                    else
+                    {
+                        this.Resultado = 0;
+                    }
+                    
 
                 }
                 this.Resultado = 1;
@@ -216,10 +230,18 @@ namespace wepp_app_v0.Models
         private PersonalInterno MejorIdS(EFDbContext db)
         {
 
-            List<PersonalInterno> IdSs = db.PersonalesInternos.Include(p => p.Actividades).Where(p => p.Rol == "IDS").ToList();
+            List<PersonalInterno> IdSs = db.PersonalesInternos.Include(p => p.Actividades).Where(p => p.Rol == "IDS" && p.EstadoPersonal=="Activo").ToList();
+
+            if (IdSs.Count == 0)
+            {
+                return null;
+            }
+            
             // ***********************************************************************************
             // Pruebo buscar IDS LIBRE
             //Genero lista de IdS Libres
+
+
 
             List<PersonalInterno> IdSLibres = new List<PersonalInterno>();
 
@@ -242,34 +264,42 @@ namespace wepp_app_v0.Models
                 //Console.WriteLine("ids Selecto libre " + IdSLibres[0].IdPersonalInterno);
                 return IdSLibres[0];
             }
-
-            // ***********************************************************************************
-            // En caso no se encontró
-            // Se busca el IDS que tiene la actividad tipo AT con fecha fin más próxima
-
-            foreach (PersonalInterno r in IdSs)
+            else
             {
-                r.Actividades.Sort(delegate(Actividad a1, Actividad a2) { return -DateTime.Compare(a1.FechaFin, a2.FechaFin); });
-                //Console.WriteLine("ids Actividad "+r.Nombre+" "+r.Actividades[0].FechaFin + r.Actividades[0].TipoActividad);
+                // ***********************************************************************************
+                // En caso no se encontró
+                // Se busca el IDS que tiene la actividad tipo AT con fecha fin más próxima
+
+                foreach (PersonalInterno r in IdSs)
+                {
+                    r.Actividades.Sort(delegate(Actividad a1, Actividad a2) { return -DateTime.Compare(a1.FechaFin, a2.FechaFin); });
+                    //Console.WriteLine("ids Actividad "+r.Nombre+" "+r.Actividades[0].FechaFin + r.Actividades[0].TipoActividad);
+                }
+
+                IdSs.Sort(delegate(PersonalInterno ids1, PersonalInterno ids2) { return DateTime.Compare(ids1.Actividades[0].FechaFin, ids2.Actividades[0].FechaFin); });
+
+                //Console.WriteLine("ids Selecto " + IdSs[0].IdPersonalInterno);
+
+
+                //IdS = IdSs[0];
+                //IdS.Actividades = IdSs[0].Actividades;
+                //Console.WriteLine("ids Selecto " + IdSs[0].Nombre + " " + IdSs[0].Actividades[0].FechaFin);
+                //Console.WriteLine("ids Selecto " + IdS.Nombre + " " + IdS.Actividades[0].FechaFin);
+                return IdSs[0];
             }
 
-            IdSs.Sort(delegate(PersonalInterno ids1, PersonalInterno ids2) { return DateTime.Compare(ids1.Actividades[0].FechaFin, ids2.Actividades[0].FechaFin); });
-
-            //Console.WriteLine("ids Selecto " + IdSs[0].IdPersonalInterno);
-
-
-            //IdS = IdSs[0];
-            //IdS.Actividades = IdSs[0].Actividades;
-            //Console.WriteLine("ids Selecto " + IdSs[0].Nombre + " " + IdSs[0].Actividades[0].FechaFin);
-            //Console.WriteLine("ids Selecto " + IdS.Nombre + " " + IdS.Actividades[0].FechaFin);
-            return IdSs[0];
+            
 
         }
 
         private PersonalInterno MejorLP(EFDbContext db)
         {
-            List<PersonalInterno> LPs = db.PersonalesInternos.Include(p => p.Actividades).Where(p => p.Rol == "LP").ToList();
+            List<PersonalInterno> LPs = db.PersonalesInternos.Include(p => p.Actividades).Where(p => p.Rol == "LP" && p.EstadoPersonal == "Activo").ToList();
 
+            if (LPs.Count == 0)
+            {
+                return null;
+            }
             // Pruebo buscar LP LIBRE
 
             //Genero lista de LP LIBREs
@@ -292,24 +322,27 @@ namespace wepp_app_v0.Models
 
                 return LPLibres[0];
             }
-
-
-
-            // ***********************************************************************************
-            // En caso no se encontró
-            // Se busca el LP que tiene la actividad tipo AT con fecha fin más próxima
-            foreach (PersonalInterno r in LPs)
+            else
             {
-                r.Actividades.Sort(delegate(Actividad a1, Actividad a2) { return -DateTime.Compare(a1.FechaFin, a2.FechaFin); });
-                //Console.WriteLine("ids Actividad "+r.Nombre+" "+r.Actividades[0].FechaFin + r.Actividades[0].TipoActividad);
+                // ***********************************************************************************
+                // En caso no se encontró
+                // Se busca el LP que tiene la actividad tipo AT con fecha fin más próxima
+                foreach (PersonalInterno r in LPs)
+                {
+                    r.Actividades.Sort(delegate(Actividad a1, Actividad a2) { return -DateTime.Compare(a1.FechaFin, a2.FechaFin); });
+                    //Console.WriteLine("ids Actividad "+r.Nombre+" "+r.Actividades[0].FechaFin + r.Actividades[0].TipoActividad);
+                }
+
+                LPs.Sort(delegate(PersonalInterno ids1, PersonalInterno ids2) { return DateTime.Compare(ids1.Actividades[0].FechaFin, ids2.Actividades[0].FechaFin); });
+
+                //Console.WriteLine("ids Selecto " + IdSs[0].IdPersonalInterno);
+                //Se encontró LP
+
+                return LPs[0];
             }
 
-            LPs.Sort(delegate(PersonalInterno ids1, PersonalInterno ids2) { return DateTime.Compare(ids1.Actividades[0].FechaFin, ids2.Actividades[0].FechaFin); });
 
-            //Console.WriteLine("ids Selecto " + IdSs[0].IdPersonalInterno);
-            //Se encontró LP
-
-            return LPs[0];
+            
 
         }
     }

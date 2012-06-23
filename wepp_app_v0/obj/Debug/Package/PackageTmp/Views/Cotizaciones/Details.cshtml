@@ -1,0 +1,101 @@
+﻿@model wepp_app_v0.Models.Cotizacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Cotizacion</legend>
+
+
+    <div class="display-label">Tipo Cotización</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TipoCot)
+    </div>
+
+    <div class="display-label">Cantidad Días Análisis Funcional</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DiasAnalisisFuncional)
+    </div>
+
+    <div class="display-label">Cantidad Días Análisis Técnico</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DiasAnalisisTecnico)
+    </div>
+
+    <div class="display-label">Cantidad Días Construcción</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DiasConstruccion)
+    </div>
+
+    <div class="display-label">Cantidad Días Certificación</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DiasCertificacion)
+    </div>
+
+    <div class="display-label">Cantidad Días Seguimiento</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DiasSeguimiento)
+    </div>
+
+    <div class="display-label">Esfuerzo(Horas) Análisis Funcional</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EsfuerzoAnalisisFuncional)
+    </div>
+
+    <div class="display-label">Esfuerzo(Horas) Análisis Técnico</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EsfuerzoAnalisisTecnico)
+    </div>
+
+    <div class="display-label">Esfuerzo(Horas) Construcción</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EsfuerzoConstruccion)
+    </div>
+
+    <div class="display-label">Esfuerzo(Horas) Certificación</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EsfuerzoCertificacion)
+    </div>
+
+    <div class="display-label">Esfuerzo(Horas) Gestión</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EsfuerzoGestion)
+    </div>
+
+    <div class="display-label">Esfuerzo Total</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EsfuerzoTotal)
+    </div>
+
+    <div class="display-label">Costo Personal Interno</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CostoPersonalInterno)
+    </div>
+
+    <div class="display-label">Costo Construcción</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CostoConstruccion)
+    </div>
+
+    <div class="display-label">Costo Certificación</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CostoCertificacion)
+    </div>
+
+    <div class="display-label">Costo Total</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CostoTotal)
+    </div>
+
+    <div class="display-label">requerimiento</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.requerimiento.NumReq)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.IdCotizacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

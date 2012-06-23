@@ -1,0 +1,31 @@
+﻿@model wepp_app_v0.Models.AsignacionRecursos
+
+@{
+    ViewBag.Title = "Asignar Recursos";
+}
+<h2>@ViewBag.Title</h2>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Datos de Asignación de Recursos</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FechaPlanificacion,"Fecha de Inicio")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FechaPlanificacion)
+            @Html.ValidationMessageFor(model => model.FechaPlanificacion)
+        </div>
+        <p>
+            <input type="submit" value="Iniciar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
