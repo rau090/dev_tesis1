@@ -8,6 +8,7 @@ namespace wepp_app_v0.Models
 {
     public class Requerimiento
     {
+
         [Key]
         public int IdRequerimiento { get; set; }
         [Required]
@@ -21,7 +22,9 @@ namespace wepp_app_v0.Models
         public int AnhoPriorizacion { get; set; }
         public int PeriodoPriorizacion { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
+        [DataType(DataType.DateTime)]
         public DateTime FechaPriorizacion { get; set; }
+
         public string LiderUsuario { get; set; }
         public string NivelComplejidad { get; set; }
         public string UnidadNegocio { get; set; }

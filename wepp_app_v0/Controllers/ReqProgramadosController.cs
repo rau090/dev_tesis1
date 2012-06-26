@@ -60,33 +60,63 @@ namespace wepp_app_v0.Controllers
             return View(requerimiento);
         }
         
-        //
-        // GET: /ReqProgramados/Edit/5
+        ////
+        //// GET: /ReqProgramados/Edit/5
  
+        //public ActionResult Edit(int id)
+        //{
+        //    Requerimiento requerimiento = db.Requerimientos.Find(id);
+        //    ViewBag.IdLiderProyecto = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdLiderProyecto);
+        //    ViewBag.IdIdS = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdIdS);
+        //    return View(requerimiento);
+        //}
+
+        ////
+        //// POST: /ReqProgramados/Edit/5
+
+        //[HttpPost]
+        //public ActionResult Edit(Requerimiento requerimiento)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(requerimiento).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.IdLiderProyecto = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdLiderProyecto);
+        //    ViewBag.IdIdS = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdIdS);
+        //    return View(requerimiento);
+        //}
+
+        //
+        // GET: /Actividades/Edit/5
+
         public ActionResult Edit(int id)
         {
-            Requerimiento requerimiento = db.Requerimientos.Find(id);
-            ViewBag.IdLiderProyecto = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdLiderProyecto);
-            ViewBag.IdIdS = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdIdS);
-            return View(requerimiento);
+            Actividad actividad = db.Actividades.Find(id);
+            ViewBag.IdCronograma = new SelectList(db.Cronogramas, "IdCronograma", "Estado", actividad.IdCronograma);
+            ViewBag.IdPersonalInterno = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", actividad.IdPersonalInterno);
+            return View(actividad);
         }
 
         //
-        // POST: /ReqProgramados/Edit/5
+        // POST: /Actividades/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(Requerimiento requerimiento)
+        public ActionResult Edit(Actividad actividad)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(requerimiento).State = EntityState.Modified;
+                db.Entry(actividad).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdLiderProyecto = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdLiderProyecto);
-            ViewBag.IdIdS = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", requerimiento.IdIdS);
-            return View(requerimiento);
+            ViewBag.IdCronograma = new SelectList(db.Cronogramas, "IdCronograma", "Estado", actividad.IdCronograma);
+            ViewBag.IdPersonalInterno = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoMaterno", actividad.IdPersonalInterno);
+            return View(actividad);
         }
+
+
 
         //
         // GET: /ReqProgramados/Delete/5

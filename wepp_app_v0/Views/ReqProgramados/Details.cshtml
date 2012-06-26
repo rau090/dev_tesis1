@@ -1,6 +1,6 @@
 ﻿@model wepp_app_v0.Models.Requerimiento
 @{
-    ViewBag.Title = "Num. Requerimiento "+Model.NumReq;
+    ViewBag.Title = "Num. Requerimiento " + Model.NumReq;
 }
 <h2>@ViewBag.Title</h2>
 <fieldset>
@@ -66,13 +66,10 @@
     <table>
         <tr>
             <th>
-                cronograma
-            </th>
-            <th>
-                personalInterno
-            </th>
-            <th>
                 OrdenActividad
+            </th>
+            <th>
+                Rol Interno
             </th>
             <th>
                 TipoActividad
@@ -94,13 +91,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdCronograma)
+                    @Html.DisplayFor(modelItem => item.OrdenActividad)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.personalInterno.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrdenActividad)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TipoActividad)
@@ -117,11 +111,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Asignacion)
                 </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdActividad }) |
+                </td>
             </tr>
         }
     </table>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRequerimiento }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </p>

@@ -19,11 +19,17 @@ namespace wepp_app_v0.Models
 
         public int OrdenActividad { get; set; }
         public string TipoActividad { get; set; }
+        [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTime FechaInicio { get; set; }
+        [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTime FechaFin { get; set; }
+        [DisplayFormat(DataFormatString = "{0:P}")]
+        [Range(0, 1, ErrorMessage = "El valor de {0} debe ser entre {1} y {2}")]
         public decimal Avance { get; set; }
+        [DisplayFormat(DataFormatString = "{0:P}")]
+        [Range(0, 1, ErrorMessage = "El valor de {0} debe ser entre {1} y {2}")]
         public decimal Asignacion { get; set; }
 
 

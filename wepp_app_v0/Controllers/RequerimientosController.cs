@@ -39,7 +39,10 @@ namespace wepp_app_v0.Controllers
         {
             ViewBag.IdLiderProyecto = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoPaterno");
             ViewBag.IdIdS = new SelectList(db.PersonalesInternos, "IdPersonalInterno", "ApellidoPaterno");
-            return View();
+            Requerimiento requerimiento = new Requerimiento();
+            requerimiento.FechaPriorizacion = DateTime.Now;
+
+            return View(requerimiento);
         } 
 
         //

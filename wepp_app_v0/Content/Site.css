@@ -1,16 +1,14 @@
-﻿/*----------------------------------------------------------
-The base color for this template is #5c87b2. If you'd like
-to use a different color start by replacing all instances of
-#5c87b2 with your new color.
-----------------------------------------------------------*/
-body {
-    background-color: #5c87b2;
+﻿body
+{
+    background-color: #00CC66;
     font-size: .85em;
-    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
     color: #696969;
 }
+
+
 
 a:link {
     color: #034af3;
@@ -41,6 +39,7 @@ nav,
 section {
     display: block;
 }
+
 
 /* HEADINGS   
 ----------------------------------------------------------*/
@@ -124,17 +123,24 @@ footer,
 
 /* TAB MENU   
 ----------------------------------------------------------*/
-ul#menu {
+ul#menu
+{
     border-bottom: 1px #5C87B2 solid;
     padding: 0 0 2px;
     position: relative;
     margin: 0;
-    text-align: right;
+    text-align: left;
+    border-bottom-width: medium;
+    width: auto;
+    border-bottom-color: #000000;
+    border-bottom-style: solid;
 }
 
-ul#menu li {
+ul#menu li
+{
     display: inline;
     list-style: none;
+    position: relative;
 }
 
 ul#menu li#greeting {
@@ -145,13 +151,14 @@ ul#menu li#greeting {
     color: #fff;
 }
 
-ul#menu li a {
+ul#menu li a
+{
     padding: 10px 20px;
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
     background-color: #e8eef4;
-    color: #034af3;
+    color: #000000;
     border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
@@ -243,12 +250,10 @@ table th {
 
 nav, 
 #menucontainer {
-    margin-top: 40px;
 }
 
 div#title {
     display: block;
-    float: left;
     text-align: left;
 }
 
@@ -301,9 +306,10 @@ div#title {
 
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/
-.display-label, 
-.editor-label {
+.display-label, .editor-label
+{
     margin: 1em 0 0 0;
+    font-weight: bold;
 }
 
 .display-field, 
@@ -325,27 +331,3 @@ div#title {
 
 /* Columnas
 ----------------------------------------------------------*/
-
-
-<style>
-
-    #columns {
-        width: 600px;
-    }
-
-    #columns .column {
-        position: relative;
-        width: 46%;
-        padding: 1%;
-        border: solid 1px #000;
-    }
-
-    #columns .left {
-        float: left;
-    }
-
-    #columns .right {
-        float: right;
-    }
-
-</style>
