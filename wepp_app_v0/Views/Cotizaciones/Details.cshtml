@@ -1,13 +1,13 @@
 ﻿@model wepp_app_v0.Models.Cotizacion
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle Cotización de Requerimiento: "+Model.requerimiento.NumReq;
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
 
 <fieldset>
-    <legend>Cotizacion</legend>
+    <legend>Datos</legend>
 
 
     <div class="display-label">Tipo Cotización</div>
@@ -96,6 +96,6 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.IdCotizacion }) |
+    @Html.ActionLink("Editar", "Edit", new { id=Model.IdCotizacion }) |
     @Html.ActionLink("Regresar", "Index")
 </p>

@@ -1,11 +1,10 @@
 ﻿@model wepp_app_v0.Models.Actividad
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Actualizar Actividad de Requerimiento: "+Model.cronograma.requerimiento.NumReq;
 }
 
-<h2>Edit</h2>
+<h2>@ViewBag.Title</h2>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
@@ -13,18 +12,37 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Actividad</legend>
+        <legend>Datos</legend>
 
         @Html.HiddenFor(model => model.IdActividad)
-        @Html.HiddenFor(model => model.IdCronograma)
-        @Html.HiddenFor(model => model.IdPersonalInterno)
-        @Html.HiddenFor(model => model.OrdenActividad)
-        @Html.HiddenFor(model => model.TipoActividad)
+        @Html.HiddenFor(model=>model.IdCronograma)
+        @Html.HiddenFor(model=>model.IdPersonalInterno)
+        @Html.HiddenFor(model=>model.OrdenActividad)
+        @Html.HiddenFor(model=>model.TipoActividad)
+
+        <div class="display-label">
+            Personal Iterno</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.personalInterno.ApellidoPaterno) - @Html.DisplayFor(model => model.personalInterno.Nombre)
+        </div>
+
+        <div class="display-label">
+            Orden Actividad</div>
+
+        <div class="display-field">
+            @Html.DisplayFor(model => model.OrdenActividad)
+        </div>
 
 
+        <div class="display-label">
+            Tipo Actividad
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.TipoActividad)
+        </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.FechaInicio)
+            @Html.LabelFor(model => model.FechaInicio,"Fecha Inicio")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.FechaInicio)
@@ -32,7 +50,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.FechaFin)
+            @Html.LabelFor(model => model.FechaFin,"Fecha Fin")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.FechaFin)
@@ -40,7 +58,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Avance)
+            @Html.LabelFor(model => model.Avance,"Avance")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Avance)
@@ -48,7 +66,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Asignacion)
+            @Html.LabelFor(model => model.Asignacion, "Asignación")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Asignacion)
@@ -56,11 +74,11 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Grabar" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Regresar", "Index")
+    @Html.ActionLink("Regresar", "Details", new { id=Model.cronograma.IdRequerimiento })
 </div>

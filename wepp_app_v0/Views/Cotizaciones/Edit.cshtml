@@ -12,7 +12,7 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Cotizacion</legend>
+        <legend>Datos</legend>
 
         @Html.HiddenFor(model => model.IdCotizacion)
         @Html.HiddenFor(model => model.IdControlCambio)
@@ -133,7 +133,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Grabar" />
         </p>
     </fieldset>
 }

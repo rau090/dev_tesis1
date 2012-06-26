@@ -49,10 +49,15 @@ namespace wepp_app_v0.Controllers
         {
             if (ModelState.IsValid)
             {
+                cotizacion.EsfuerzoAnalisisFuncional = cotizacion.DiasAnalisisFuncional*8;
+                cotizacion.EsfuerzoAnalisisTecnico = cotizacion.DiasAnalisisTecnico * 8;
+                
                 cotizacion.EsfuerzoTotal = cotizacion.EsfuerzoAnalisisFuncional + cotizacion.EsfuerzoAnalisisTecnico + 
-                    cotizacion.EsfuerzoCertificacion + cotizacion.EsfuerzoConstruccion + cotizacion.EsfuerzoGestion;
+                    cotizacion.EsfuerzoCertificacion + cotizacion.EsfuerzoConstruccion;
                 cotizacion.CostoTotal = cotizacion.CostoConstruccion + cotizacion.CostoPersonalInterno + cotizacion.CostoCertificacion;
-                    
+                cotizacion.EsfuerzoGestion = (int)(cotizacion.EsfuerzoTotal * 0.15);
+                cotizacion.EsfuerzoTotal = cotizacion.EsfuerzoTotal + cotizacion.EsfuerzoGestion;
+  
                 db.Cotizaciones.Add(cotizacion);
                 db.SaveChanges();
                 return RedirectToAction("Index");  

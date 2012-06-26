@@ -29,9 +29,11 @@ namespace wepp_app_v0.Controllers
 
         public ActionResult Create()
         {
+            AsignacionRecursos asignacionrecursos = new AsignacionRecursos();
+            asignacionrecursos.FechaPlanificacion = DateTime.Now;
             List<Requerimiento> reqs = db.Requerimientos.Include(r => r.LiderProyecto).Include(r => r.IdS).Where(r=>r.Estado=="Programado").OrderBy(r=>r.Prioridad).ToList();
             ViewBag.Requerimientos = reqs;
-            return View();
+            return View(asignacionrecursos);
         }
 
         //

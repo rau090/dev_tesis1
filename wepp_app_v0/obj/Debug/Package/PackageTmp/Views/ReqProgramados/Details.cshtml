@@ -1,15 +1,10 @@
 ﻿@model wepp_app_v0.Models.Requerimiento
 @{
-    ViewBag.Title = "Num. Requerimiento "+Model.NumReq;
+    ViewBag.Title = "Num. Requerimiento " + Model.NumReq;
 }
 <h2>@ViewBag.Title</h2>
 <fieldset>
-    <legend>Requerimiento</legend>
-    <div class="display-label">
-        Num. Requerimiento</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.NumReq)
-    </div>
+    <legend>Datos Requerimientos</legend>
     <div class="display-label">
         Lider de Proyecto</div>
     <div class="display-field">
@@ -66,41 +61,37 @@
     <table>
         <tr>
             <th>
-                cronograma
+                Orden Actividad
             </th>
             <th>
-                personalInterno
+                Rol Interno
             </th>
             <th>
-                OrdenActividad
+                Tipo Actividad
             </th>
             <th>
-                TipoActividad
+                Fecha Inicio
             </th>
             <th>
-                FechaInicio
-            </th>
-            <th>
-                FechaFin
+                Fecha Fin
             </th>
             <th>
                 Avance
             </th>
             <th>
-                Asignacion
+                Asignación
+            </th>
+            <th>
             </th>
         </tr>
         @foreach (var item in Model.Cronogramas[0].Actividades)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdCronograma)
+                    @Html.DisplayFor(modelItem => item.OrdenActividad)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.personalInterno.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrdenActividad)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TipoActividad)
@@ -117,11 +108,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Asignacion)
                 </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdActividad })
+                </td>
             </tr>
         }
     </table>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRequerimiento }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </p>

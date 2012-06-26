@@ -4,12 +4,7 @@
 }
 <h2>@ViewBag.Title</h2>
 <fieldset>
-    <legend>Requerimiento</legend>
-    <div class="display-label">
-        Num. Requerimiento</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.NumReq)
-    </div>
+    <legend>Datos Requerimientos</legend>
     <div class="display-label">
         Lider de Proyecto</div>
     <div class="display-field">
@@ -66,25 +61,27 @@
     <table>
         <tr>
             <th>
-                OrdenActividad
+                Orden Actividad
             </th>
             <th>
                 Rol Interno
             </th>
             <th>
-                TipoActividad
+                Tipo Actividad
             </th>
             <th>
-                FechaInicio
+                Fecha Inicio
             </th>
             <th>
-                FechaFin
+                Fecha Fin
             </th>
             <th>
                 Avance
             </th>
             <th>
-                Asignacion
+                Asignación
+            </th>
+            <th>
             </th>
         </tr>
         @foreach (var item in Model.Cronogramas[0].Actividades)
@@ -112,7 +109,7 @@
                     @Html.DisplayFor(modelItem => item.Asignacion)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IdActividad }) |
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdActividad })
                 </td>
             </tr>
         }

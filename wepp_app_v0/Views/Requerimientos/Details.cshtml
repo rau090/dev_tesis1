@@ -4,10 +4,10 @@
     ViewBag.Title = "Detalles Requerimiento";
 }
 
-<h2>ViewBag.Title</h2>
+<h2>@ViewBag.Title</h2>
 
 <fieldset>
-    <legend>Requerimiento</legend>
+    <legend>Datos</legend>
 
     <div class="display-label">Num. Requerimiento</div>
     <div class="display-field">
@@ -62,6 +62,6 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRequerimiento }) |
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdRequerimiento }) |
     @Html.ActionLink("Regresar", "Index")
 </p>

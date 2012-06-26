@@ -12,17 +12,9 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>PersonalInterno</legend>
+        <legend>Datos</legend>
 
         @Html.HiddenFor(model => model.IdPersonalInterno)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ApellidoMaterno)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ApellidoMaterno)
-            @Html.ValidationMessageFor(model => model.ApellidoMaterno)
-        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.ApellidoPaterno)
@@ -30,6 +22,14 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.ApellidoPaterno)
             @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ApellidoMaterno)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ApellidoMaterno)
+            @Html.ValidationMessageFor(model => model.ApellidoMaterno)
         </div>
 
         <div class="editor-label">
@@ -63,7 +63,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Grabar" />
         </p>
     </fieldset>
 }
