@@ -1,0 +1,43 @@
+﻿@model wepp_app_v0.Models.Vacacion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Vacacion</legend>
+
+    <div class="display-label">Anho</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Anho)
+    </div>
+
+    <div class="display-label">FechaFin</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaFin)
+    </div>
+
+    <div class="display-label">FechaInicio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaInicio)
+    </div>
+
+    <div class="display-label">Periodo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Periodo)
+    </div>
+
+    <div class="display-label">personalInterno</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.personalInterno.ApellidoMaterno)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -69,6 +69,7 @@ namespace wepp_app_v0.Controllers
             {
                 vacacion.FechaFin = vacacion.FechaInicio.AddDays(vacacion.Periodo);
                 vacacion.Estado = "Aprobado";
+                vacacion.Anho = vacacion.FechaFin.Year;
 
                 db.Vacaciones.Add(vacacion);
                 db.SaveChanges();
@@ -95,8 +96,21 @@ namespace wepp_app_v0.Controllers
         [HttpPost]
         public ActionResult Edit(Vacacion vacacion)
         {
+            if (vacacion.Periodo > 20)
+            {
+                string error = "El periodo máximo de vacaciones es 20 días";
+                ModelState.AddModelError("Periodo", error);
+            }
+            if (vacacion.Periodo <= 5)
+            {
+                string error = "El periodo mínimo de vacaciones es 5 días";
+                ModelState.AddModelError("Periodo", error);
+            }
             if (ModelState.IsValid)
             {
+                vacacion.FechaFin = vacacion.FechaInicio.AddDays(vacacion.Periodo);
+                vacacion.Estado = "Aprobado";
+                vacacion.Anho = vacacion.FechaFin.Year;
                 db.Entry(vacacion).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
