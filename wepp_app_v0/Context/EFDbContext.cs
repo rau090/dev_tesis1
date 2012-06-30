@@ -16,6 +16,8 @@ namespace wepp_app_v0.Context
         public DbSet<Cotizacion> Cotizaciones { get; set; }
         public DbSet<Cronograma> Cronogramas { get; set; }
         public DbSet<Actividad> Actividades { get; set; }
+        public DbSet<Vacacion> Vacaciones { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -73,9 +75,15 @@ namespace wepp_app_v0.Context
                 .HasForeignKey(p => p.IdPersonalInterno)
                 .WillCascadeOnDelete(false);
 
+            //Tabla Vacaciones
+            modelBuilder.Entity<Vacacion>().ToTable("Vacaciones");
 
+            modelBuilder.Entity<Vacacion>()
+                .HasRequired(s => s.personalInterno)
+                .WithMany()
+                .HasForeignKey(s => s.IdPersonalInterno)
+                .WillCascadeOnDelete(false);
 
-            
 
         }
 

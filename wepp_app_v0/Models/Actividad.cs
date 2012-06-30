@@ -26,7 +26,6 @@ namespace wepp_app_v0.Models
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         [DataType(DataType.DateTime)]
-        
         public DateTime FechaFin { get; set; }
         
         [DisplayFormat(DataFormatString = "{0:P}")]

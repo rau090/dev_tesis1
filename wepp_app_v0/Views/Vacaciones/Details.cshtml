@@ -1,0 +1,40 @@
+﻿@model wepp_app_v0.Models.Vacacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Vacacion</legend>
+
+    <div class="display-label">Anho</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Anho)
+    </div>
+
+    <div class="display-label">FechaFin</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaFin)
+    </div>
+
+    <div class="display-label">FechaInicio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaInicio)
+    </div>
+
+    <div class="display-label">Periodo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Periodo)
+    </div>
+
+    <div class="display-label">personalInterno</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.personalInterno.ApellidoMaterno)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.IdVacacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

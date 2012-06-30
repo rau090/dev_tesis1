@@ -335,6 +335,9 @@ namespace wepp_app_v0.Models
 
                 LPs.Sort(delegate(PersonalInterno ids1, PersonalInterno ids2) { return DateTime.Compare(ids1.Actividades[0].FechaFin, ids2.Actividades[0].FechaFin); });
 
+
+
+
                 //Console.WriteLine("ids Selecto " + IdSs[0].IdPersonalInterno);
                 //Se encontró LP
 
@@ -345,5 +348,90 @@ namespace wepp_app_v0.Models
             
 
         }
+
+
+
+        private PersonalInterno MejorLP_v2(EFDbContext db)
+        {
+            List<PersonalInterno> LPs = db.PersonalesInternos.Include(p => p.Actividades).Where(p => p.Rol == "LP" && p.EstadoPersonal == "Activo").ToList();
+
+            if (LPs.Count == 0)
+            {
+                return null;
+            }
+            // Pruebo buscar LP LIBRE
+
+            //Genero lista de LP LIBREs
+
+
+            List<PersonalInterno> LPLibres = new List<PersonalInterno>();
+            List<PersonalInterno> LPSinPendientes = new List<PersonalInterno>();
+            foreach (PersonalInterno r in LPs)
+            {
+                if (r.Actividades.Count() == 0)
+                {
+                    LPLibres.Add(r);
+                }
+            }
+
+            if (LPLibres.Count() > 0)
+            {
+                //Se encontró el mejor LP
+                //Console.WriteLine("lp Libre " + LPLibres[0].Nombre);
+
+                return LPLibres[0];
+            }
+            else
+            {
+                // ***********************************************************************************
+                // En caso no se encontró
+                // Se busca el LP que tiene la actividad tipo AT con fecha fin más próxima
+
+                //Se busca por LPS con actividades pendientes menores a 5
+                foreach (PersonalInterno r in LPs)
+                {
+                    r.Actividades.Sort(delegate(Actividad a1, Actividad a2) { return -DateTime.Compare(a1.FechaFin, a2.FechaFin); });
+                    int actividadesPendientes = r.Actividades.Where(a => a.Avance < 1).ToList().Count;
+                    if (actividadesPendientes < 5)
+                    {
+                        LPSinPendientes.Add(r);
+                    }
+                    //Console.WriteLine("ids Actividad "+r.Nombre+" "+r.Actividades[0].FechaFin + r.Actividades[0].TipoActividad);
+                }
+
+
+                if (LPSinPendientes.Count > 0)
+                {
+                    return LPSinPendientes[0];
+                }
+
+                // Si no hay LPS con activiades pendientes menores a 5
+
+                foreach (PersonalInterno r in LPs)
+                {
+                    r.Actividades.Sort(delegate(Actividad a1, Actividad a2) { return DateTime.Compare(a1.FechaFin, a2.FechaFin); });
+                    int actividadesPendientes = r.Actividades.Where(a => a.Avance < 1).ToList().Count;
+                    if (actividadesPendientes < 5)
+                    {
+                        LPSinPendientes.Add(r);
+                    }
+                    //Console.WriteLine("ids Actividad "+r.Nombre+" "+r.Actividades[0].FechaFin + r.Actividades[0].TipoActividad);
+                }
+
+
+                LPs.Sort(delegate(PersonalInterno ids1, PersonalInterno ids2) { return DateTime.Compare(ids1.Actividades[0].FechaFin, ids2.Actividades[0].FechaFin); });
+
+
+                //Console.WriteLine("ids Selecto " + IdSs[0].IdPersonalInterno);
+                //Se encontró LP
+
+                return LPs[0];
+            }
+
+
+
+
+        }
+
     }
 }

@@ -1,0 +1,66 @@
+﻿@model wepp_app_v0.Models.Vacacion
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Vacacion</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Anho)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Anho)
+            @Html.ValidationMessageFor(model => model.Anho)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FechaFin)
+        </div>
+        <div class="editor-field">
+            @Html.
+            @Html.EditorFor(model => model.FechaFin)
+            @Html.ValidationMessageFor(model => model.FechaFin)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FechaInicio)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FechaInicio)
+            @Html.ValidationMessageFor(model => model.FechaInicio)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Periodo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Periodo)
+            @Html.ValidationMessageFor(model => model.Periodo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdPersonalInterno, "personalInterno")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdPersonalInterno", String.Empty)
+            @Html.ValidationMessageFor(model => model.IdPersonalInterno)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

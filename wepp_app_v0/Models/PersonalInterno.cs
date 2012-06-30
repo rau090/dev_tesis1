@@ -19,6 +19,7 @@ namespace wepp_app_v0.Models
         public string Rol { get; set; }
         public virtual List<Requerimiento> Requerimientos { get; set; }
         public virtual List<Actividad> Actividades { get; set; }
+        public virtual List<Vacacion> Vacaciones { get; set; }
 
 
     }
