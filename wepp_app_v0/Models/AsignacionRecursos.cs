@@ -16,9 +16,14 @@ namespace wepp_app_v0.Models
             public DateTime fecha { get; set; }
         }
 
-        public int Resultado { get; set; }
-        public DateTime FechaPlanificacion { get; set; }
+        public struct FechaPersona
+        {
+            public PersonalInterno persona { get; set; }
+            public DateTime fecha { get; set; }
+        }
 
+        public DateTime FechaPlanificacion { get; set; }
+        public int Resultado { get; set; }
 
         public int Planificacion(DateTime planificacion, EFDbContext db)
         {
@@ -229,8 +234,8 @@ namespace wepp_app_v0.Models
 
         private PersonalInterno MejorIdS(EFDbContext db)
         {
-
-            List<PersonalInterno> IdSs = db.PersonalesInternos.Include(p => p.Actividades).Where(p => p.Rol == "IDS" && p.EstadoPersonal=="Activo").ToList();
+            List<FechaPersona> resultados = new List<FechaPersona>();
+            List<PersonalInterno> IdSs = db.PersonalesInternos.Include(p => p.Actividades).Include(p=>p.Vacaciones).Where(p => p.Rol == "IDS" && p.EstadoPersonal=="Activo").ToList();
 
             if (IdSs.Count == 0)
             {
@@ -273,9 +278,37 @@ namespace wepp_app_v0.Models
                 foreach (PersonalInterno r in IdSs)
                 {
                     r.Actividades.Sort(delegate(Actividad a1, Actividad a2) { return -DateTime.Compare(a1.FechaFin, a2.FechaFin); });
+                    r.Vacaciones.OrderByDescending(v => v.FechaFin);
+                    if (r.Vacaciones.Count > 0)
+                    {
+                        if (DateTime.Compare(r.Actividades[0].FechaFin, r.Vacaciones[0].FechaFin) > 0)
+                        {
+                            FechaPersona resultado = new FechaPersona();
+                            resultado.persona = r;
+                            resultado.fecha = r.Actividades[0].FechaFin;
+                            resultados.Add(resultado);
+                        }
+                        else
+                        {
+                            FechaPersona resultado = new FechaPersona();
+                            resultado.persona = r;
+                            resultado.fecha = r.Vacaciones[0].FechaFin;
+                            resultados.Add(resultado);
+                        }
+
+                    }
+                    else
+                    {
+                        FechaPersona resultado = new FechaPersona();
+                        resultado.persona = r;
+                        resultado.fecha = r.Actividades[0].FechaFin;
+                        resultados.Add(resultado);
+                    }
+                    
                     //Console.WriteLine("ids Actividad "+r.Nombre+" "+r.Actividades[0].FechaFin + r.Actividades[0].TipoActividad);
                 }
 
+                resultados.OrderBy(r => r.fecha);
                 IdSs.Sort(delegate(PersonalInterno ids1, PersonalInterno ids2) { return DateTime.Compare(ids1.Actividades[0].FechaFin, ids2.Actividades[0].FechaFin); });
 
                 //Console.WriteLine("ids Selecto " + IdSs[0].IdPersonalInterno);
@@ -285,7 +318,7 @@ namespace wepp_app_v0.Models
                 //IdS.Actividades = IdSs[0].Actividades;
                 //Console.WriteLine("ids Selecto " + IdSs[0].Nombre + " " + IdSs[0].Actividades[0].FechaFin);
                 //Console.WriteLine("ids Selecto " + IdS.Nombre + " " + IdS.Actividades[0].FechaFin);
-                return IdSs[0];
+                return resultados[0].persona;
             }
 
             
@@ -294,7 +327,8 @@ namespace wepp_app_v0.Models
 
         private PersonalInterno MejorLP(EFDbContext db)
         {
-            List<PersonalInterno> LPs = db.PersonalesInternos.Include(p => p.Actividades).Where(p => p.Rol == "LP" && p.EstadoPersonal == "Activo").ToList();
+            List<FechaPersona> resultados = new List<FechaPersona>();
+            List<PersonalInterno> LPs = db.PersonalesInternos.Include(p => p.Actividades).Include(p => p.Vacaciones).Where(p => p.Rol == "LP" && p.EstadoPersonal == "Activo").ToList();
 
             if (LPs.Count == 0)
             {
@@ -331,17 +365,43 @@ namespace wepp_app_v0.Models
                 {
                     r.Actividades.Sort(delegate(Actividad a1, Actividad a2) { return -DateTime.Compare(a1.FechaFin, a2.FechaFin); });
                     //Console.WriteLine("ids Actividad "+r.Nombre+" "+r.Actividades[0].FechaFin + r.Actividades[0].TipoActividad);
+                    r.Vacaciones.OrderByDescending(v => v.FechaFin);
+                    if (r.Vacaciones.Count > 0)
+                    {
+                        if (DateTime.Compare(r.Actividades[0].FechaFin, r.Vacaciones[0].FechaFin) > 0)
+                        {
+                            FechaPersona resultado = new FechaPersona();
+                            resultado.persona = r;
+                            resultado.fecha = r.Actividades[0].FechaFin;
+                            resultados.Add(resultado);
+                        }
+                        else
+                        {
+                            FechaPersona resultado = new FechaPersona();
+                            resultado.persona = r;
+                            resultado.fecha = r.Vacaciones[0].FechaFin;
+                            resultados.Add(resultado);
+                        }
+
+                    }
+                    else
+                    {
+                        FechaPersona resultado = new FechaPersona();
+                        resultado.persona = r;
+                        resultado.fecha = r.Actividades[0].FechaFin;
+                        resultados.Add(resultado);
+                    }
                 }
 
                 LPs.Sort(delegate(PersonalInterno ids1, PersonalInterno ids2) { return DateTime.Compare(ids1.Actividades[0].FechaFin, ids2.Actividades[0].FechaFin); });
-
+                resultados.OrderBy(r => r.fecha);
 
 
 
                 //Console.WriteLine("ids Selecto " + IdSs[0].IdPersonalInterno);
                 //Se encontró LP
 
-                return LPs[0];
+                return resultados[0].persona;
             }
 
 
