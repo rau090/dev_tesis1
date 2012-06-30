@@ -11,7 +11,9 @@ namespace wepp_app_v0.Models
         [Key]
         public int IdVacacion { get; set; }
 
-        
+        public int IdPersonalInterno { get; set; }
+        public virtual PersonalInterno personalInterno { get; set; }
+
         public int Anho { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
@@ -22,10 +24,11 @@ namespace wepp_app_v0.Models
         [DataType(DataType.DateTime)]
         public DateTime FechaInicio {get;set;}
 
+        public string Estado { get; set; }
+
         public int Periodo { get; set; }
 
-        public int IdPersonalInterno { get; set; }
-        public virtual PersonalInterno personalInterno { get; set; }
+        
 
 
     }

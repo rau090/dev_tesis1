@@ -82,6 +82,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Actividad.cs" />
     <Compile Include="Models\AsignacionRecursos.cs" />
+    <Compile Include="Models\AsignarVacaciones.cs" />
     <Compile Include="Models\Cotizacion.cs" />
     <Compile Include="Models\Cronograma.cs" />
     <Compile Include="Models\PersonalInterno.cs" />

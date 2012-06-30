@@ -38,7 +38,16 @@ namespace wepp_app_v0.Context
                 .WithMany(l => l.Requerimientos)
                 .HasForeignKey(s => s.IdIdS)
                 .WillCascadeOnDelete(false);
-            
+
+            //Tabla Vacaciones
+            modelBuilder.Entity<Vacacion>().ToTable("Vacaciones");
+
+            modelBuilder.Entity<Vacacion>()
+                .HasRequired(s => s.personalInterno)
+                .WithMany(l=>l.Vacaciones)
+                .HasForeignKey(s => s.IdPersonalInterno)
+                .WillCascadeOnDelete(false);
+
 
             //Tabla PersonalInterno
             modelBuilder.Entity<PersonalInterno>().ToTable("PersonalInterno");
@@ -75,15 +84,7 @@ namespace wepp_app_v0.Context
                 .HasForeignKey(p => p.IdPersonalInterno)
                 .WillCascadeOnDelete(false);
 
-            //Tabla Vacaciones
-            modelBuilder.Entity<Vacacion>().ToTable("Vacaciones");
-
-            modelBuilder.Entity<Vacacion>()
-                .HasRequired(s => s.personalInterno)
-                .WithMany()
-                .HasForeignKey(s => s.IdPersonalInterno)
-                .WillCascadeOnDelete(false);
-
+            
 
         }
 
